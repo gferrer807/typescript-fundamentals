@@ -3,12 +3,12 @@
 /**
  * (1) x is a string, b/c we’ve initialized it
  */
-// let x = "hello world";
+let x = "hello world";
 
 /**
  * (2) reassignment is fine
  */
-// x = "hello mars";
+x = "hello mars";
 
 /**
  * (3) but if we try to change type
@@ -18,7 +18,8 @@
 /**
  * (4) let's look at const. The type is literally 'hello world'
  */
-// const y = "hello world";
+const y = "hello world";
+
 
 /**
  * This is called a 'string literal type'. y can never be reassigned since it's a const,
@@ -51,6 +52,8 @@
 /**
  * (8) simple array types can be expressed using []
  */
+//both declerations work
+//let aa = [6];
 // let aa: number[] = [];
 // aa.push(33);
 // aa.push("abc"); // 🚨 ERROR: Argument of type '"abc"' is not assignable to parameter of type 'number'.
@@ -117,44 +120,45 @@
  * Sometimes we have a type that can be one of several things
  */
 
-// export interface HasPhoneNumber {
-//   name: string;
-//   phone: number;
-// }
+export interface HasPhoneNumber {
+  name: string;
+  phone: number;
+}
 
-// export interface HasEmail {
-//   name: string;
-//   email: string;
-// }
+export interface HasEmail {
+  name: string;
+  email: string;
+}
 
-// let contactInfo: HasEmail | HasPhoneNumber =
-//   Math.random() > 0.5
-//     ? {
-//         // we can assign it to a HasPhoneNumber
-//         name: "Mike",
-//         phone: 3215551212
-//       }
-//     : {
-//         // or a HasEmail
-//         name: "Mike",
-//         email: "mike@example.com"
-//       };
+let contactInfo: HasEmail | HasPhoneNumber =
+  Math.random() > 0.5
+    ? {
+        // we can assign it to a HasPhoneNumber
+        name: "Mike",
+        phone: 3215551212
+      }
+    : {
+        // or a HasEmail
+        name: "Mike",
+        email: "mike@example.com"
+      };
 
-// contactInfo.name; // NOTE: we can only access the .name property  (the stuff HasPhoneNumber and HasEmail have in common)
+contactInfo.name; // NOTE: we can only access the .name property  (the stuff HasPhoneNumber and HasEmail have in common)
+//can only access things guarenteed to be there
 
 /**
  * (15) Intersection types
  */
-// let otherContactInfo: HasEmail & HasPhoneNumber = {
-//   // we _must_ initialize it to a shape that's asssignable to HasEmail _and_ HasPhoneNumber
-//   name: "Mike",
-//   email: "mike@example.com",
-//   phone: 3215551212
-// };
+let otherContactInfo: HasEmail & HasPhoneNumber = {
+  // we _must_ initialize it to a shape that's asssignable to HasEmail _and_ HasPhoneNumber
+  name: "Mike",
+  email: "mike@example.com",
+  phone: 3215551212
+};
 
-// otherContactInfo.name; // NOTE: we can access anything on _either_ type
-// otherContactInfo.email;
-// otherContactInfo.phone;
+otherContactInfo.name; // NOTE: we can access anything on _either_ type
+otherContactInfo.email;
+otherContactInfo.phone;
 // const zzz: any = {} as never;
 
 export default {};
